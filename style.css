@@ -1,0 +1,55 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  font-size: 62.5%;
+}
+
+body {
+  background-color: black;
+}
+
+#app {
+  max-width: 1120px;
+  margin: 0 auto;
+  /* border: 1px solid red; */
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  /* border: 1px solid red; */
+
+  margin: 11.5rem 0 8.7rem;
+}
+
+.search {
+  display: flex;
+  gap: 0.8rem;
+
+}
+
+.search input {
+  font-size: 1.6rem;
+  line-height: 1.6rem;
+  width: 46.2rem;
+  height: 4.8rem;
+
+  margin-top: 2px;
+  border-radius: 5px;
+  border: none;
+  padding: 1.6rem;
+}
+
+.search button {
+  background: none;
+}
+
+table {
+  color: #E1E1E6;
+}
