@@ -6,10 +6,29 @@
 
 :root {
   font-size: 62.5%;
+
+  /* --hue-: hsl(300, 74%, 19%); */
+  --hue: 270;
+  --primarytable-color: hsl(var(--hue), 75%, 18%);
+  --secondarytable-color: hsl(var(--hue), 75%, 5%);
+  --tertiarytable-color: hsl(var(--hue), 75%, 8%);
+  --bordertable-color: hsl(var(--hue), 31%, 30%);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
 
 body {
-  background-color: black;
+  background-color: #110018;
 }
 
 #app {
@@ -38,18 +57,96 @@ header {
   font-size: 1.6rem;
   line-height: 1.6rem;
   width: 46.2rem;
-  height: 4.8rem;
+  height: 4.77rem;
 
-  margin-top: 2px;
   border-radius: 5px;
   border: none;
   padding: 1.6rem;
+  
+  background-color: var(--tertiarytable-color);
 }
 
 .search button {
   background: none;
+  border: none;
+
+  position: relative;
+}
+
+.search button span {
+  color: #FFF;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  
+  position: absolute;
+
+  top: 1.6rem;
+  right: 3.2rem;
 }
 
 table {
+  border-collapse: separate;
+  border-spacing: 0;
   color: #E1E1E6;
+  font-size: 2rem;
+}
+
+table tr {
+  background-color: var(--secondarytable-color);
+  
+}
+
+table tr:nth-child(even) {
+  background-color: var(--tertiarytable-color);
+}
+
+thead tr th {
+  padding: 1.6rem 6.4rem 1.6rem 4rem;
+  
+  background-color: var(--primarytable-color);
+}
+
+thead tr th:first-child {
+  padding-right: 42.3rem;
+  border-top-left-radius: 1.2rem;
+}
+
+thead tr th:last-child {
+  border-top-right-radius: 1.2rem;
+}
+
+thead tr th:nth-child(3),
+thead tr th:last-child {
+  padding-right: 9.2rem;
+}
+
+tbody img {
+  width: 5.6rem;
+  height: 5.6rem;
+  border-radius: 50%;
+}
+
+tbody tr td {
+  padding: 2.4rem 10.9rem 2.4rem 4rem;
+}
+
+
+tbody tr td:last-child {
+  padding-right:5.3rem;
+}
+
+tbody tr td:first-child {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+tbody .user p {
+  margin-bottom: 0.5rem;
+}
+
+tbody .buttonRemove {
+  background: none;
+  color: #F75A68;
+  cursor: pointer;
 }
