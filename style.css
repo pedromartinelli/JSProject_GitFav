@@ -13,7 +13,8 @@
   --secondarytable-color: hsl(var(--hue), 61%, 6%);
   --tertiarytable-color: hsl(var(--hue), 65%, 7%);
   --bordertable-color: hsl(var(--hue), 31%, 30%);
-  --ff-primary:'Roboto', sans-serif;
+  --ff-color: #E1E1E6; 
+  --ff-roboto:'Roboto', sans-serif;
 }
 
 .sr-only {
@@ -30,7 +31,7 @@
 
 body {
   background-color: #110018;
-  font-family: var(--ff-primary);
+  font-family: var(--ff-roboto);
 }
 
 #app {
@@ -60,7 +61,7 @@ header {
   line-height: 1.6rem;
   width: 46.2rem;
   height: 4.77rem;
-  color: #E1E1E6;
+  color: var(--ff-color);
 
   border-radius: 5px;
   border: none;
@@ -95,7 +96,7 @@ table {
 
   /* border: 1px solid hsl(280, 31%, 42%);
   border-radius: 1.2rem; */
-  color: #E1E1E6;
+  color: var(--ff-color);
   font-size: 2rem;
 }
 
@@ -143,9 +144,7 @@ tbody img {
 tbody tr td {
   padding: 2.4rem 10.9rem 2.4rem 4rem;
   border-bottom: 1px solid hsl(280, 31%, 42%);
-
 }
-
 
 tbody tr td:last-child {
   padding-right:5.3rem;
@@ -157,8 +156,14 @@ tbody tr td:first-child {
   gap: 1.6rem;
 }
 
-tbody .user p {
+tbody a {
+  text-decoration: none;
+  color: var(--ff-color);
+}
+
+tbody a p {
   margin-bottom: 0.5rem;
+  
 }
 
 tbody .buttonRemove {
