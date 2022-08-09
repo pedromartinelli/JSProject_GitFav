@@ -1,3 +1,14 @@
+class GithubUser {
+  static search(username) {
+    const endpoint = `https://api.github.com/users/${username}`
+
+    return fetch(endpoint)
+      .then(data => data.json())
+      .then(({ login, name, public_repos, followers }) => ({
+        login, name, public_repos, followers
+      }))
+  }
+}
 class DataClass {
   constructor(root) {
     this.root = document.querySelector(root)
@@ -7,23 +18,9 @@ class DataClass {
 
   load() {
     this.entries = JSON.parse(localStorage.getItem('@Github-favorites:')) || []
-    
-    //  this.entries =  // teste para ver se a função update estava funcionando
-    //    [
-    //      {
-    //        login: 'pedromartinelli',
-    //        name: 'Pedro Martinelli',
-    //        public_repos: '5',
-    //        followers: '1'
-    //      },
-    //      {
-    //        login: 'gusmanmatheus',
-    //        name: 'Matheus Gusman',
-    //        public_repos: '25',
-    //        followers: '17'
-    //      }
-    //    ]
   }
+
+
 
   delete(user) {
     const filteredItems = this.entries.filter((entry) => entry.login !== user.login)
@@ -40,6 +37,7 @@ export class ViewClass extends DataClass {
     this.tbody = this.root.querySelector('table tbody')
 
     this.update()
+    this.onadd()
   }
 
   update() {
@@ -68,6 +66,14 @@ export class ViewClass extends DataClass {
     })
 
 
+  }
+
+  onadd() {
+    const addButton = this.root.querySelector('.search button').onclick = () => {
+      const { value } = this.root.querySelector('.search input')
+
+      this.add(value)
+    }
   }
 
   createRow() {
