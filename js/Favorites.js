@@ -20,13 +20,42 @@ class DataClass {
     this.entries = JSON.parse(localStorage.getItem('@Github-favorites:')) || []
   }
 
+  save() {
+    localStorage.setItem('@Github-favorites:', JSON.stringify(this.entries))
+  }
 
+  async add(username) {
+    try {
+      const userExists = this.entries.find(entry => entry.login.toLowerCase() === username.toLowerCase())
+
+      // console.log(userExists)
+
+      if (userExists) {
+        throw new Error('User already registered.')
+      }
+
+      const user = await GithubUser.search(username)
+
+      console.log(user)
+      if (user.login === undefined) {
+        throw new Error('User not found!')
+      }
+
+      this.entries = [user, ...this.entries]
+      this.update()
+      this.save()
+
+    } catch (error) {
+      alert(error.message)
+    }
+  }
 
   delete(user) {
     const filteredItems = this.entries.filter((entry) => entry.login !== user.login)
 
     this.entries = filteredItems
     this.update()
+    this.save()
   }
 }
 
@@ -61,11 +90,8 @@ export class ViewClass extends DataClass {
         }
       }
 
-      console.log(user)
       this.tbody.append(row)
     })
-
-
   }
 
   onadd() {
@@ -76,11 +102,11 @@ export class ViewClass extends DataClass {
     }
   }
 
-  createRow() {
-    const tr = document.createElement('tr')
+    createRow() {
+      const tr = document.createElement('tr')
 
-    tr.innerHTML =
-      `
+      tr.innerHTML =
+        `
       <td class="user">
         <img src="https://github.com/PedroMartinelli.png" alt="Profile image of Pedro Martinelli">
 
@@ -96,12 +122,12 @@ export class ViewClass extends DataClass {
       </td>
     `
 
-    return tr
-  }
+      return tr
+    }
 
-  removeAllTr() {
-    this.tbody.querySelectorAll('tr').forEach((tr) => {
-      tr.remove()
-    });
+    removeAllTr() {
+      this.tbody.querySelectorAll('tr').forEach((tr) => {
+        tr.remove()
+      });
+    }
   }
-}
