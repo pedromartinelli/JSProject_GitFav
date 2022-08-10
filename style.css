@@ -37,6 +37,7 @@ body {
 #app {
   max-width: 1128px;
   margin: 0 auto;
+
 }
 
 header {
@@ -44,15 +45,12 @@ header {
   justify-content: space-between;
   align-items: center;
 
-  /* border: 1px solid red; */
-
   margin: 11.5rem 0 8.7rem;
 }
 
 .search {
   display: flex;
   gap: 0.8rem;
-
 }
 
 .search input {
@@ -67,6 +65,10 @@ header {
   padding: 1.6rem;
   
   background-color: var(--tertiarytable-color);
+}
+
+.search input:focus {
+  outline: 2px solid hsl(280, 31%, 42%);
 }
 
 .search button {
@@ -89,12 +91,16 @@ header {
   right: 3.2rem;
 }
 
+.search button:focus {
+  outline: none;
+  transform: scale(1.03);
+  opacity: calc(0.9);
+}
+
 table {
   border-collapse: separate;
   border-spacing: 0;
-
-  /* border: 1px solid hsl(280, 31%, 42%);
-  border-radius: 1.2rem; */
+  
   color: var(--ff-color);
   font-size: 2rem;
 }
@@ -105,7 +111,6 @@ table tbody p {
 
 table tr {
   background-color: var(--secondarytable-color);
-
 }
 
 table tr:nth-child(even) {
@@ -116,12 +121,11 @@ thead tr th {
   padding: 1.6rem 6.4rem 1.6rem 4rem;
   background-color: var(--primarytable-color);
   
-  
   font-weight: 700;
 }
 
 thead tr th:first-child {
-  padding-right: 42.3rem;
+  padding-right: 41.6rem;
   border-top-left-radius: 1.2rem;
 }
 
@@ -145,6 +149,7 @@ tbody tr td {
   border-bottom: 1px solid hsl(280, 31%, 42%);
 }
 
+
 tbody tr td:last-child {
   padding-right:5.3rem;
 }
@@ -160,9 +165,12 @@ tbody a {
   color: var(--ff-color);
 }
 
+tbody a:focus {
+  outline: 2px solid hsl(280, 31%, 42%);
+}
+
 tbody a p {
   margin-bottom: 0.5rem;
-  
 }
 
 tbody .buttonRemove {
@@ -171,4 +179,41 @@ tbody .buttonRemove {
   cursor: pointer;
   font-size: 2rem;
   border: none;
+}
+
+tbody .buttonRemove:focus {
+  outline: 2px solid hsl(280, 31%, 42%);
+}
+
+main {
+  position: relative;
+}
+
+
+.emptyfullMessage {
+  display: none;
+}
+
+.empty {
+display: flex; 
+align-items: center;
+
+font-family: var(--ff-roboto);
+font-size: 4.0rem;
+font-weight: 700;
+
+color: hsla(189, 4%, 32%, 1); 
+
+position: absolute;
+top: 19rem;
+left: 26.5rem;
+
+}
+
+.full {
+  display: none;
+}
+
+.empty svg {
+  margin-right: 6.0rem;
 }

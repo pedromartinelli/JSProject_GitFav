@@ -41,6 +41,9 @@ class DataClass {
         throw new Error('User not found!')
       }
 
+      const input = document.querySelector('.search input')
+      input.value = ''
+
       this.entries = [user, ...this.entries]
       this.update()
       this.save()
@@ -56,6 +59,8 @@ class DataClass {
     this.entries = filteredItems
     this.update()
     this.save()
+    this.isEmpty()
+
   }
 }
 
@@ -67,12 +72,16 @@ export class ViewClass extends DataClass {
 
     this.update()
     this.onadd()
+    this.isEmpty()
+    this.enterKey()
   }
 
   update() {
     this.removeAllTr()
 
+
     this.entries.forEach(user => {
+
       const row = this.createRow()
 
       row.querySelector('.user img').src = `https://github.com/${user.login}.png`
@@ -89,9 +98,10 @@ export class ViewClass extends DataClass {
           this.delete(user)
         }
       }
-
       this.tbody.append(row)
     })
+    this.isEmpty()
+
   }
 
   onadd() {
@@ -102,32 +112,57 @@ export class ViewClass extends DataClass {
     }
   }
 
-    createRow() {
-      const tr = document.createElement('tr')
+  createRow() {
+    const tr = document.createElement('tr')
 
-      tr.innerHTML =
-        `
+    tr.innerHTML =
+      `
       <td class="user">
-        <img src="https://github.com/PedroMartinelli.png" alt="Profile image of Pedro Martinelli">
-
-        <a href="https://github.com/PedroMartinelli" target="_blank">
-          <p>Pedro Martinelli</p>
-           <span>/pedromartinelli</span>
-        </a>
+      <img src="https://github.com/PedroMartinelli.png" alt="Profile image of Pedro Martinelli">
+      
+      <a href="https://github.com/PedroMartinelli" target="_blank">
+      <p>Pedro Martinelli</p>
+      <span>/pedromartinelli</span>
+      </a>
       </td>
       <td class="repos">5</td>
       <td class="followers">0</td>
       <td>
-        <button class="buttonRemove">Remove</button>
+      <button class="buttonRemove">Remove</button>
       </td>
-    `
+      `
+    return tr
+  }
 
-      return tr
-    }
+  removeAllTr() {
+    this.tbody.querySelectorAll('tr').forEach((tr) => {
+      tr.remove()
+    });
+  }
 
-    removeAllTr() {
-      this.tbody.querySelectorAll('tr').forEach((tr) => {
-        tr.remove()
-      });
+  isEmpty() {
+    let trExists = this.tbody.querySelector('tr')
+    const fullMessage = document.querySelector('.emptyfullMessage')
+
+    if (trExists) {
+      fullMessage.classList.remove('empty')
+      fullMessage.classList.add('full')
+      console.log('Está cheio')
+    } else {
+      fullMessage.classList.remove('full')
+      fullMessage.classList.add('empty')
+      console.log('Está vazio')
     }
   }
+
+  enterKey() {
+    const input = document.querySelector('.search input')
+    input.addEventListener('keypress', function(event) {
+      if (event.key ==='Enter') {
+        event.preventDefault()
+        document.querySelector('.search button').click()
+        input.value = ''
+      }
+    })
+  }
+}
