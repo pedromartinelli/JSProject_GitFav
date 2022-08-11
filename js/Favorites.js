@@ -28,7 +28,6 @@ class DataClass {
     try {
       const userExists = this.entries.find(entry => entry.login.toLowerCase() === username.toLowerCase())
 
-      // console.log(userExists)
 
       if (userExists) {
         throw new Error('User already registered.')
@@ -36,7 +35,6 @@ class DataClass {
 
       const user = await GithubUser.search(username)
 
-      console.log(user)
       if (user.login === undefined) {
         throw new Error('User not found!')
       }
@@ -147,11 +145,9 @@ export class ViewClass extends DataClass {
     if (trExists) {
       fullMessage.classList.remove('empty')
       fullMessage.classList.add('full')
-      console.log('Está cheio')
     } else {
       fullMessage.classList.remove('full')
       fullMessage.classList.add('empty')
-      console.log('Está vazio')
     }
   }
 

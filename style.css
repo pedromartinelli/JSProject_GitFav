@@ -8,13 +8,16 @@
   font-size: 62.5%;
 
   /* --hue-: hsl(300, 74%, 19%); */
-  --hue: 280;
-  --primarytable-color: hsl(var(--hue), 72%, 13%);
+  --hue: 270;
+  --primarytable-color: hsl(var(--hue), 72%, 15%);
   --secondarytable-color: hsl(var(--hue), 61%, 6%);
   --tertiarytable-color: hsl(var(--hue), 65%, 7%);
   --bordertable-color: hsl(var(--hue), 31%, 30%);
-  --ff-color: #E1E1E6; 
-  --ff-roboto:'Roboto', sans-serif;
+  --outline-color: hsl(var(--hue), 31%, 42%);
+  --scrollbarthumb-color: hsla(var(--hue), 40%, 42%, 1);
+  --favoritebutton-color: hsl(var(--hue), 91%, 25%);
+  --ff-color: #E1E1E6;
+  --ff-roboto: 'Roboto', sans-serif;
 }
 
 .sr-only {
@@ -63,12 +66,12 @@ header {
   border-radius: 5px;
   border: none;
   padding: 1.6rem;
-  
+
   background-color: var(--tertiarytable-color);
 }
 
 .search input:focus {
-  outline: 2px solid hsl(280, 31%, 42%);
+  outline: 2px solid var(--outline-color);
 }
 
 .search button {
@@ -79,12 +82,16 @@ header {
   cursor: pointer;
 }
 
+.search button svg rect {
+  fill: var(--favoritebutton-color);
+}
+
 .search button span {
   color: #FFF;
   font-size: 1.4rem;
   font-weight: 700;
   text-transform: uppercase;
-  
+
   position: absolute;
 
   top: 1.6rem;
@@ -97,10 +104,15 @@ header {
   opacity: calc(0.9);
 }
 
+.search button:hover {
+  transform: scale(1.03);
+  opacity: calc(0.9);
+}
+
 table {
   border-collapse: separate;
   border-spacing: 0;
-  
+
   color: var(--ff-color);
   font-size: 2rem;
 }
@@ -118,24 +130,28 @@ table tr:nth-child(even) {
 }
 
 thead tr th {
-  padding: 1.6rem 6.4rem 1.6rem 4rem;
+  /* padding: 1.6rem 7rem 1.6rem 4rem; */
   background-color: var(--primarytable-color);
-  
+
   font-weight: 700;
 }
 
 thead tr th:first-child {
-  padding-right: 41.6rem;
+  padding: 1.6rem 39.4rem 1.6rem 4rem;
   border-top-left-radius: 1.2rem;
 }
 
-thead tr th:last-child {
-  border-top-right-radius: 1.2rem;
+thead tr th:nth-child(2) {
+  padding: 1.6rem 6.4rem 1.6rem 5.9rem;
 }
 
-thead tr th:nth-child(3),
+thead tr th:nth-child(3) {
+  padding: 1.6rem 9.2rem 1.6rem 4rem;
+}
+
 thead tr th:last-child {
-  padding-right: 9.2rem;
+  padding: 1.6rem 9.2rem 1.6rem 4rem;
+  border-top-right-radius: 1.2rem;
 }
 
 tbody img {
@@ -145,19 +161,32 @@ tbody img {
 }
 
 tbody tr td {
-  padding: 2.4rem 10.9rem 2.4rem 4rem;
-  border-bottom: 1px solid hsl(280, 31%, 42%);
-}
-
-
-tbody tr td:last-child {
-  padding-right:5.3rem;
+  padding: 2.4rem 0;
+  border-bottom: 2px solid var(--primarytable-color);
 }
 
 tbody tr td:first-child {
+  padding-right: 8.1rem;
+  padding-left: 4rem;
+
   display: flex;
   align-items: center;
   gap: 1.6rem;
+}
+
+tbody tr td a {
+  width: 31.1rem;
+}
+
+tbody .repos,
+tbody .followers {
+  width: 21.9rem;
+  padding-left: 3rem;
+}
+
+tbody tr td:last-child {
+  width: 17.4rem;
+  padding-left: 3rem;
 }
 
 tbody a {
@@ -166,7 +195,13 @@ tbody a {
 }
 
 tbody a:focus {
-  outline: 2px solid hsl(280, 31%, 42%);
+  outline: none;
+  opacity: calc(0.8);
+  transform: scale(1.03);
+}
+
+tbody a:hover {
+  opacity: calc(0.8);
 }
 
 tbody a p {
@@ -182,32 +217,37 @@ tbody .buttonRemove {
 }
 
 tbody .buttonRemove:focus {
-  outline: 2px solid hsl(280, 31%, 42%);
+  outline: none;
+  transform: scale(1.03);
+  opacity: calc(0.9);
+}
+
+tbody .buttonRemove:hover {
+  transform: scale(1.03);
+  opacity: calc(0.8);
 }
 
 main {
   position: relative;
 }
 
-
 .emptyfullMessage {
   display: none;
 }
 
 .empty {
-display: flex; 
-align-items: center;
+  display: flex;
+  align-items: center;
 
-font-family: var(--ff-roboto);
-font-size: 4.0rem;
-font-weight: 700;
+  font-family: var(--ff-roboto);
+  font-size: 4.0rem;
+  font-weight: 700;
 
-color: hsla(189, 4%, 32%, 1); 
+  color: hsla(189, 4%, 32%, 1);
 
-position: absolute;
-top: 19rem;
-left: 26.5rem;
-
+  position: absolute;
+  top: 19rem;
+  left: 26.5rem;
 }
 
 .full {
@@ -217,3 +257,29 @@ left: 26.5rem;
 .empty svg {
   margin-right: 6.0rem;
 }
+
+thead,
+tbody {
+  display: block;
+}
+
+tbody {
+  overflow-y: scroll;
+  height: 31.8rem;
+}
+
+::-webkit-scrollbar {
+  background-color: transparent;
+  width: 0.6rem;
+  height: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+
+  background-color: var(--scrollbarthumb-color);
+}
+
+::-webkit-scrollbar-track-piece {
+  background-color: var(--primarytable-color);
+} 
