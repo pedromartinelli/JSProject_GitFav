@@ -8,7 +8,7 @@
   font-size: 62.5%;
 
   /* --hue-: hsl(300, 74%, 19%); */
-  --hue: 270;
+  --hue: 274;
   --primarytable-color: hsl(var(--hue), 72%, 15%);
   --secondarytable-color: hsl(var(--hue), 61%, 6%);
   --tertiarytable-color: hsl(var(--hue), 65%, 7%);
@@ -38,7 +38,7 @@ body {
 }
 
 #app {
-  max-width: 1128px;
+  max-width: 1121px;
   margin: 0 auto;
 
 }
